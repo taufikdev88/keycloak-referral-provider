@@ -8,6 +8,7 @@ This project provides a custom Keycloak event listener to automatically generate
 - Stores the `referralCode` in the user's attributes.
 - Ensures uniqueness of `referralCode` by checking existing users.
 - Includes proper error handling and logging.
+- Add referral code to registration flow, and send webhook to specific url
 
 ## Installation
 
@@ -76,14 +77,19 @@ Logs can be viewed in Keycloak's console or log files.
 ### Project Structure
 ```plaintext
 src/main/java/com/labq/keycloak/provider
+    ├── ReferralCodeFormAction.java
+    ├── ReferralCodeFormActionFactory.java
     ├── ReferralCodeProvider.java
     ├── ReferralCodeProviderFactory.java
 src/main/resources
+    ├── META-INF/services/org.keycloak.authentication.FormActionFactory
     ├── META-INF/services/org.keycloak.events.EventListenerProviderFactory
 pom.xml
 ```
 
 ### Key Classes
+- **ReferralCodeFormAction**: Handles referral code validation when registration submitted.
+- **ReferralCodeFormActionFactory**: Creates the `ReferralCodeFormAction` instance.
 - **ReferralCodeProvider**: Handles referral code generation and assignment.
 - **ReferralCodeProviderFactory**: Creates the `ReferralCodeProvider` instance.
 

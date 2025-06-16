@@ -83,7 +83,7 @@ public class ReferralCodeFormAction implements FormAction {
 
         UserModel user = formContext.getUser();
         if (user != null) {
-            user.setSingleAttribute("referredBy", referralCode);
+            user.setSingleAttribute("referredBy", referringUserId);
         }
 
         RealmModel realm = formContext.getRealm();
